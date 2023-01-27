@@ -9,7 +9,7 @@ class Esterilizacion:
     def __init__(self):
         pass
 
-    def load_file(self, file_name):
+    def load_esterilizacion_file(self, file_name):
         df = pd.read_excel(file_name)
         return df
 
@@ -19,4 +19,6 @@ class Esterilizacion:
 
 if __name__ == '__main__':
     instancia = Esterilizacion()
-    instancia.load_file()
+    RUTA_ARCHIVO = 'test_files_input/produccion_esterilizacionDIC2022.xlsx'
+    df = instancia.load_esterilizacion_file(RUTA_ARCHIVO)
+    print(df)
