@@ -17,15 +17,6 @@ class Esterilizacion:
         pass
 
 
-class TestEsterilizacion(unittest.TestCase):
-    def __init__(self):
-        super().__init__()
-        self.instancia = Esterilizacion()
-
-    def test_load_file(self):
-        self.assertEqual(self.instancia.load_file(), )
-
-
 if __name__ == '__main__':
     instancia = Esterilizacion()
     instancia.load_file()
