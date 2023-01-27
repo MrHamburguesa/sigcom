@@ -27,6 +27,17 @@ class Esterilizacion:
 
         return df_month
 
+    def extract_autoclave_plasma_data(self, df_month):
+        df_tmp = df_month.copy()
+        df_tmp = df_tmp.set_index(df_tmp.columns[0])
+
+        litros_prod_autoclave_1 = df_tmp.loc['Litros producción', 'AUTOCLAVE 1']
+        litros_prod_autoclave_2 = df_tmp.loc['Litros producción', 'AUTOCLAVE 2']
+        litros_prod_plasma = df_tmp.loc['Litros producción', 'PLASMA']
+
+        return litros_prod_autoclave_1, litros_prod_autoclave_2, litros_prod_plasma
+
+
     def get_cubic_meters(self):
         pass
 
@@ -35,5 +46,6 @@ if __name__ == '__main__':
     instancia = Esterilizacion()
     RUTA_ARCHIVO = 'test_files_input/produccion_esterilizacionDIC2022.xlsx'
     df = instancia.load_esterilizacion_file(RUTA_ARCHIVO)
-    index = instancia.extract_esterilizacion_data(df, 'AGOSTO')
-    print(index)
+    df_month = instancia.extract_month_data(df, 'AGOSTO')
+    auto_1, auto_2, plasma = instancia.extract_autoclave_plasma_data(df_month)
+    print(auto_1, auto_2, plasma)
