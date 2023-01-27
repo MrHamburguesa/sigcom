@@ -37,15 +37,18 @@ class Esterilizacion:
 
         return litros_prod_autoclave_1, litros_prod_autoclave_2, litros_prod_plasma
 
-
-    def get_cubic_meters(self):
-        pass
+    def get_cubic_meters(self, auto_1, auto_2, plasma):
+        return round(sum([auto_1, auto_2, plasma]) / 1000, 0)
 
 
 if __name__ == '__main__':
     instancia = Esterilizacion()
     RUTA_ARCHIVO = 'test_files_input/produccion_esterilizacionDIC2022.xlsx'
     df = instancia.load_esterilizacion_file(RUTA_ARCHIVO)
+    print(df)
     df_month = instancia.extract_month_data(df, 'AGOSTO')
+    print(df_month)
     auto_1, auto_2, plasma = instancia.extract_autoclave_plasma_data(df_month)
     print(auto_1, auto_2, plasma)
+    m3 = instancia.get_cubic_meters(auto_1, auto_2, plasma)
+    print(m3)
